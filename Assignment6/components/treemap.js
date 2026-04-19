@@ -9,7 +9,6 @@ function Text({ node, displayValue }) {
     const leafLabel = `${node.data.attr}: ${node.data.name}`;
     const textLines = [leafLabel, `Value: ${displayValue}`];
     const showDetail = width > 62 && height > 46;
-    const showLargeLabel = width > 120 && height > 95;
 
     return <>
         {showDetail && <text
@@ -24,17 +23,6 @@ function Text({ node, displayValue }) {
                     {line}
                 </tspan>
             ))}
-        </text>}
-        {showLargeLabel && <text
-            x={(node.x0 + node.x1) / 2}
-            y={(node.y0 + node.y1) / 2}
-            fill="rgba(0, 0, 0, 0.25)"
-            fontSize={Math.min(54, width / 6)}
-            fontWeight={800}
-            textAnchor="middle"
-            dominantBaseline="middle"
-        >
-            {labels[labels.length - 1]}
         </text>}
     </>;
 }
@@ -87,7 +75,7 @@ export function TreeMap(props) {
         const width = node.x1 - node.x0;
         const height = node.y1 - node.y0;
         const rotate = height > width * 1.4 ? ` rotate(90 ${x} ${y})` : "";
-        return { x, y, rotate, size: Math.min(46, Math.max(20, Math.min(width, height) / 3)) };
+        return { x, y, rotate, size: Math.min(34, Math.max(18, Math.min(width, height) / 4.8)) };
     };
 
     return <svg
